@@ -19,9 +19,12 @@
    Plug 'vhda/verilog_systemverilog.vim', {'for': ['verilog', 'verilog_systemverilog'] }
    Plug 'hiberabyss/visincr'
    Plug 'Konfekt/FastFold'
-   Plug 'ssh://git@gitlab-master.nvidia.com:12051/usbhw/log.vim.git'
-   "https://gitlab-master.nvidia.com/usbhw/log.vim'
-
+   "Plug 'python-mode/python-mode' , { 'for': 'python', 'branch': 'develop' }
+   Plug 'sheerun/vim-polyglot'
+   Plug 'tpope/vim-fugitive'
+   Plug 'yegappan/taglist'
+   Plug 'ctrlpvim/ctrlp.vim'
+   Plug 'majutsushi/tagbar'
 
    call plug#end()
 
@@ -110,6 +113,15 @@
    xnoremap az :<c-u>FastFoldUpdate<cr><esc>:<c-u>normal! ]zV[z<cr>
    augroup END " }
 
+   au BufNewFile,BufRead *.medic set syntax=perl
+   au BufNewFile,BufRead *.ref,*.vpref set syntax=manuals
+   au BufNewFile,BufRead *.js set syntax=javascript
+   "au BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+   au BufNewFile,BufRead *.v,*.vh,*.vt,*.gv,*.bvrl,*.vlib set ft=verilog syntax=verilog_systemverilog 
+   au BufNewFile,BufRead *.svh,*.sv,*.svt,*.v,*.vh,*.vt,*.gv,*.vlib set ft=verilog_systemverilog syntax=verilog_systemverilog 
+   autocmd FileType c,cpp,java,php,verilog_systemverilog autocmd BufWritePre <buffer> %s/\s\+$//e
+   
    " AutoReload vimrc when written
    augroup reload_vimrc " {
        autocmd!
@@ -150,3 +162,5 @@
 
 
 endif
+
+
